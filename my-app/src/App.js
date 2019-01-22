@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Delete from '@material-ui/icons/Delete'
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = {
@@ -55,23 +55,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        {this.state.persons.map((person) => {
-          return <div key={person.id}>
-            <Person
-              id={"person-" + person.id}
-              name={person.name}
-              age={person.age}
-              change={(event) => this.nameChangedHandler(event, person.id)} >{person.txt}
-            </Person>
-            <Delete onClick={() => this.deletePersonHandler(person.id)} />
-          </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App</h1>
+          {this.state.persons.map((person) => {
+            return <div key={person.id}>
+              <Person
+                id={"person-" + person.id}
+                name={person.name}
+                age={person.age}
+                change={(event) => this.nameChangedHandler(event, person.id)}
+                delete={() => this.deletePersonHandler(person.id)} >{person.txt}
+              </Person>
+            </div>
 
-        })}
-      </div>
+          })}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);

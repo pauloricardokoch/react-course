@@ -1,0 +1,17 @@
+.Person {
+    position: relative;
+    width: 100% - calc('20px');
+    background-color: #f0f0f0;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: #dfdfdf solid 1px;
+}
+
+.DeletePerson {
+    position: absolute;
+    margin: 10px;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
