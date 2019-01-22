@@ -1,25 +1,74 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Person from './Person/Person';
+import Delete from '@material-ui/icons/Delete'
 
 class App extends Component {
+  state = {
+    persons: [
+      {
+        id: 0,
+        name: 'Max',
+        age: 30
+      },
+      {
+        id: 1,
+        name: 'Manu',
+        age: 17,
+        txt: 'Testing'
+      }
+    ]
+  };
+
+  getPersonIndex = (id) => {
+    return this.state.persons.findIndex(p => {
+      return p.id === id
+    });
+  };
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.getPersonIndex(id);
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({
+      persons: persons
+    });
+  };
+
+  deletePersonHandler = (id) => {
+    const personIndex = this.getPersonIndex(id);
+    const persons = [...this.state.persons];
+
+    persons.splice(personIndex, 1);
+
+    this.setState({
+      persons: persons
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Hi, I'm a React App</h1>
+        {this.state.persons.map((person) => {
+          return <div key={person.id}>
+            <Person
+              id={"person-" + person.id}
+              name={person.name}
+              age={person.age}
+              change={(event) => this.nameChangedHandler(event, person.id)} >{person.txt}
+            </Person>
+            <Delete onClick={() => this.deletePersonHandler(person.id)} />
+          </div>
+
+        })}
       </div>
     );
   }
