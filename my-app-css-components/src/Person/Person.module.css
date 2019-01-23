@@ -15,3 +15,9 @@
     right: 0;
     cursor: pointer;
 }
+
+@media (min-width: 650px) {
+    .Person {
+        width: 620px;
+    }
+} 

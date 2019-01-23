@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -54,7 +54,7 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
+        <div className={styles.App}>
           <h1>Hi, I'm a React App</h1>
           {this.state.persons.map((person) => {
             return <div key={person.id}>
