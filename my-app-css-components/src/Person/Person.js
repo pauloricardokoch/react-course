@@ -5,6 +5,10 @@ import Delete from '@material-ui/icons/Delete';
 import styles from './Person.module.css';
 
 const person = (props) => {
+    const random = Math.random();
+    if (random > .99)
+        throw new Error('Something went wrong!');
+
     return (
         <div className={styles.Person}>
             <TextField
